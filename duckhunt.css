@@ -1,0 +1,33 @@
+body {
+    background: url("./duckhunt-bg-4k.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    cursor: url("./target.png"), auto;
+}
+
+@font-face {
+    font-family: gameFont;
+    src: url("game-font.otf");
+}
+
+#score {
+    font-size: 30px;
+    font-family: gameFont;  
+    color: white;
+
+    user-select: none;
+    -webkit-user-select: none;      /* Chrome, Opera */
+    -webkit-touch-callout: none;    /* Safari */
+    -moz-user-select: none;         /* Firefox */
+    -ms-user-select: none;          /* Internet Explorer/Edge */
+}
+
+img {
+    user-select: none;
+    -webkit-user-select: none;      /* Chrome, Opera */
+    -webkit-touch-callout: none;    /* Safari */
+    -moz-user-select: none;         /* Firefox */
+    -ms-user-select: none;          /* Internet Explorer/Edge */
+}
