@@ -1,10 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: url("./duckhunt-bg-4k.png");
+    background: url("duckhunt-bg-4k.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
-    cursor: url("./target.png"), auto;
+    cursor: url("target.png"), auto;
+    overflow: hidden;
+    font-family: gameFont;
 }
 
 @font-face {
@@ -12,22 +19,51 @@ body {
     src: url("game-font.otf");
 }
 
-#score {
-    font-size: 30px;
-    font-family: gameFont;  
+#hud {
+    position: fixed;
+    top: 10px;
+    left: 10px;
     color: white;
+    font-family: gameFont;
+    font-size: 24px;
+    display: flex;
+    gap: 30px;
+}
 
-    user-select: none;
-    -webkit-user-select: none;      /* Chrome, Opera */
-    -webkit-touch-callout: none;    /* Safari */
-    -moz-user-select: none;         /* Firefox */
-    -ms-user-select: none;          /* Internet Explorer/Edge */
+#play-btn, #pause-btn {
+    position: fixed;
+    top: 20px;
+    padding: 10px 20px;
+    font-family: gameFont;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+#play-btn {
+    left: 20px;
+    background-color: #ff6600;
+}
+
+#play-btn:hover {
+    background-color: #ff8800;
+    transform: scale(1.1);
+}
+
+#pause-btn {
+    left: 140px;
+    background-color: #0066ff;
+}
+
+#pause-btn:hover {
+    background-color: #3388ff;
+    transform: scale(1.1);
 }
 
 img {
     user-select: none;
-    -webkit-user-select: none;      /* Chrome, Opera */
-    -webkit-touch-callout: none;    /* Safari */
-    -moz-user-select: none;         /* Firefox */
-    -ms-user-select: none;          /* Internet Explorer/Edge */
 }
