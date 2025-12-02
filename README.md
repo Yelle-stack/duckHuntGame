@@ -3,6 +3,7 @@
 Duck Hunt Deluxe est un jeu de tir au canard classique réinventé pour le navigateur.
 Le joueur tente de tirer sur les canards qui volent à l’écran avant la fin du temps imparti.
 
+![image alt](https://github.com/Yelle-stack/duckHuntGame/blob/8c3f554e0a613e4bf5aae14e5b12b92a58af4117/duckhuntphoto.png)
 ## 🚀 Fonctionnalités
 Tir sur des canards avec un curseur personnalisé.
 
