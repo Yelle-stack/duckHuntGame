@@ -2,7 +2,7 @@
 
 A fast-paced browser shooting game built with vanilla HTML, CSS and JavaScript. Shoot the flying ducks before the timer runs out, climb to level 2 and try to beat your high score.
 
-![Duck Hunt Deluxe](duckhuntphoto.png)
+![img alt](https://github.com/Yelle-stack/duckHuntGame/blob/a881fbac9f46c7b21bdc623a6ecb559af49bbf7b/Capture%20d%E2%80%99e%CC%81cran%202026-11-07%20a%CC%80%2009.44.32.png)
 
 🎮 **[Play the game](LIEN_DU_JEU)**
 
