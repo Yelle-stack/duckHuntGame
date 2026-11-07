@@ -1,41 +1,84 @@
-# Duck Hunt Game 🎯🦆
+# 🦆 Duck Hunt 
 
-Duck Hunt Deluxe est un jeu de tir au canard classique réinventé pour le navigateur.
-Le joueur tente de tirer sur les canards qui volent à l’écran avant la fin du temps imparti.
+A fast-paced browser shooting game built with vanilla HTML, CSS and JavaScript. Shoot the flying ducks before the timer runs out, climb to level 2 and try to beat your high score.
 
-![image alt](https://github.com/Yelle-stack/duckHuntGame/blob/8c3f554e0a613e4bf5aae14e5b12b92a58af4117/duckhuntphoto.png)
-## 🚀 Fonctionnalités
-Tir sur des canards avec un curseur personnalisé.
+![img alt](https://github.com/Yelle-stack/duckHuntGame/blob/a881fbac9f46c7b21bdc623a6ecb559af49bbf7b/Capture%20d%E2%80%99e%CC%81cran%202026-11-07%20a%CC%80%2009.44.32.png)
 
-Score et meilleur score en temps réel.
+🎮 **[Play the game](LIEN_DU_JEU)**
 
-Gestion du temps avec un timer de jeu.
+---
 
-Pause et reprise du jeu.
+## ✨ Features
 
-Apparition aléatoire des canards et du chien qui récupère les canards non touchés.
+- 🎯 Click on the ducks to shoot them
+- 🐕 A dog collects the ducks after each wave
+- 🌙 **Two levels**: level 2 starts at 10 points, with faster ducks and a night scenery
+- 🏆 Win the game by reaching 30 points on level 2
+- ⏱️ 200-second countdown
+- ⏸️ Pause and resume at any time
+- 💾 High score saved in the browser (`localStorage`)
+- 🔊 Sound effects
+- 📐 Layout that adapts when the window is resized
 
-Sons pour le tir des canards et le chien.
+## 🕹️ How to play
 
-Design responsive et immersif avec image de fond 4K.
+1. Click **Jouer** to start.
+2. Click on the ducks to score points. Each wave has one or two ducks.
+3. Reach **10 points** to unlock level 2.
+4. Reach **30 points** before the timer hits zero to win.
+5. Use **Pause** to take a break.
 
-## 🛠️ Technologies utilisées
-HTML5
+The game is best played on a computer with a mouse. Touch support on phones is still basic.
 
-CSS3 (avec police personnalisée et curseur personnalisé)
+## 🛠️ Technologies
 
-JavaScript (ES6)
+- **HTML5**
+- **CSS3** (layout, transitions, CSS filters for the level 2 scenery, media queries)
+- **JavaScript** (DOM manipulation, `setInterval`, `localStorage`, game state management)
 
-## 🎮 Commandes
-Bouton Jouer : démarre le jeu
+## 🚀 Run it locally
 
-Bouton Pause / Reprendre : met le jeu en pause ou reprend le jeu
+```bash
+git clone https://github.com/Yelle-stack/duckHuntGame.git
+cd duckHuntGame
+```
 
-Clique gauche sur le canard : tirer et marquer un point
+Then open `index.html` in your browser. No installation or build step is needed.
 
-## 💡 Astuces
-Chaque partie génère un nombre aléatoire de canards.
+## 📁 Project structure
 
-Le chien apparaît pour récupérer les canards non touchés.
+```
+duckHuntGame/
+├── index.html      # Page structure and HUD
+├── duckhunt.css    # Styles, scenery and responsive rules
+├── duckhunt.js     # Game logic (ducks, levels, timer, score)
+├── favicon.svg
+├── favicon.png
+└── ...             # Images and sounds
+```
 
-Essayez d’atteindre le meilleur score avant la fin du timer !
+## ⚙️ Easy to customize
+
+The main settings are at the top of `duckhunt.js`:
+
+```js
+const LEVEL_2_SCORE = 10;   // score needed to reach level 2
+const LEVEL_2_SPEED = 1.5;  // duck speed multiplier on level 2
+const LEVEL_2_TARGET = 30;  // score needed to win
+```
+
+## 🔮 Possible improvements
+
+- Better touch controls and smaller ducks on mobile
+- A third level with a new scenery
+- Online leaderboard
+- More enemy types and power-ups
+
+## 🎨 Credits
+
+Add the credits for your images, sounds and font here (author, licence, link).
+
+## 👩‍💻 Author
+
+**Jelena Zeko** – Full-Stack Developer
+GitHub: [@Yelle-stack](https://github.com/Yelle-stack)
