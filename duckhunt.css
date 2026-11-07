@@ -1,3 +1,8 @@
+@font-face {
+    font-family: gameFont;
+    src: url("game-font.otf");
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -11,20 +16,16 @@ body {
     background-size: cover;
     cursor: url("target.png"), auto;
     overflow: hidden;
-    font-family: gameFont;
-}
-
-@font-face {
-    font-family: gameFont;
-    src: url("game-font.otf");
+    font-family: gameFont, sans-serif;
 }
 
 #hud {
     position: fixed;
     top: 10px;
     left: 10px;
+    z-index: 10;
     color: white;
-    font-family: gameFont;
+    font-family: gameFont, sans-serif;
     font-size: 24px;
     display: flex;
     gap: 30px;
@@ -33,14 +34,15 @@ body {
 #play-btn, #pause-btn {
     position: fixed;
     top: 20px;
+    z-index: 10;
     padding: 10px 20px;
-    font-family: gameFont;
+    font-family: gameFont, sans-serif;
     font-size: 20px;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s, background-color 0.3s;
 }
 
@@ -62,6 +64,22 @@ body {
 #pause-btn:hover {
     background-color: #3388ff;
     transform: scale(1.1);
+}
+
+#message {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-family: gameFont, sans-serif;
+    font-size: 32px;
+    text-align: center;
+    border-radius: 15px;
 }
 
 img {
