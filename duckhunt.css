@@ -14,6 +14,7 @@ body {
     cursor: url("target.png"), auto;
     overflow: hidden;
     font-family: gameFont, sans-serif;
+    touch-action: manipulation;
 }
 
 /* Décor : une couche séparée, pour pouvoir changer son apparence par niveau */
@@ -106,6 +107,7 @@ body.level-2 #scenery {
 
 img {
     user-select: none;
+    -webkit-touch-callout: none;
 }
 
 /* Petits écrans : l'affichage passe sous les boutons */
@@ -117,5 +119,35 @@ img {
         flex-wrap: wrap;
         gap: 10px 20px;
         font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    #play-btn, #pause-btn {
+        top: 10px;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    #play-btn {
+        left: 10px;
+    }
+
+    #pause-btn {
+        left: 110px;
+    }
+
+    #hud {
+        top: 55px;
+        left: 10px;
+        gap: 6px 12px;
+        font-size: 12px;
+    }
+
+    #message {
+        width: 80%;
+        box-sizing: border-box;
+        padding: 14px 20px;
+        font-size: 20px;
     }
 }
