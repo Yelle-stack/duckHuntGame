@@ -1,6 +1,7 @@
 // ---------- Réglages des niveaux ----------
 const LEVEL_2_SCORE = 10;   // score à atteindre pour passer au niveau 2
 const LEVEL_2_SPEED = 1.5;  // les canards vont 1,5 fois plus vite au niveau 2
+const LEVEL_2_TARGET = 30;  // score à atteindre pour gagner la partie
 
 // ---------- Canards ----------
 let ducks = [];
@@ -110,7 +111,7 @@ function togglePause() {
     document.getElementById("pause-btn").innerText = isPaused ? "Reprendre" : "Pause";
 }
 
-// ---------- Passage au niveau 2 ----------
+// ---------- Niveau 2 et victoire ----------
 function checkLevelUp() {
     if (level === 1 && score >= LEVEL_2_SCORE) {
         level = 2;
@@ -118,6 +119,8 @@ function checkLevelUp() {
         document.body.classList.add("level-2");
         updateHUD();
         showTemporaryMessage("Niveau 2 !", 2000);
+    } else if (level === 2 && score >= LEVEL_2_TARGET) {
+        endGame(true);
     }
 }
 
@@ -253,7 +256,8 @@ function showTemporaryMessage(text, duration) {
 }
 
 // ---------- Fin du jeu ----------
-function endGame() {
+// won = true : victoire (objectif atteint) ; sinon : temps écoulé
+function endGame(won = false) {
     gameActive = false;
     clearInterval(gameInterval);
     clearInterval(timerInterval);
@@ -269,9 +273,14 @@ function endGame() {
     }
 
     isPaused = false;
-    timer = 0;
+    if (!won) timer = 0;
     updateHUD();
     document.getElementById("pause-btn").innerText = "Pause";
     document.getElementById("play-btn").style.display = "block";
-    showMessage(`Temps écoulé ! Score final : ${score} (niveau ${level})`);
+
+    if (won) {
+        showMessage(`Bravo, tu as gagné ! Score : ${score}, temps restant : ${timer}s`);
+    } else {
+        showMessage(`Temps écoulé ! Score final : ${score} (niveau ${level})`);
+    }
 }
