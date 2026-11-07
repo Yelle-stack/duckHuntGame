@@ -1,3 +1,7 @@
+// ---------- Réglages des niveaux ----------
+const LEVEL_2_SCORE = 10;   // score à atteindre pour passer au niveau 2
+const LEVEL_2_SPEED = 1.5;  // les canards vont 1,5 fois plus vite au niveau 2
+
 // ---------- Canards ----------
 let ducks = [];
 let duckCount = 1;
@@ -11,15 +15,18 @@ let duckVelocityY = 5;
 let gameWidth = window.innerWidth;
 let gameHeight = window.innerHeight * 3 / 4;
 
-// ---------- Score et temps ----------
+// ---------- Score, niveau et temps ----------
 let score = 0;
 let highScore = loadHighScore();
 let timer = 200;
+let level = 1;
+let speedFactor = 1;
 
 // ---------- État du jeu ----------
 let gameInterval;
 let timerInterval;
 let dogTimeout;
+let messageTimeout;
 let dogImage = null;
 let isPaused = false;
 let gameActive = false;
@@ -75,9 +82,13 @@ function startGame() {
     isPaused = false;
     score = 0;
     timer = 200;
+    level = 1;
+    speedFactor = 1;
 
+    document.body.classList.remove("level-2");
     document.getElementById("play-btn").style.display = "none";
     document.getElementById("pause-btn").innerText = "Pause";
+    clearTimeout(messageTimeout);
     hideMessage();
     updateHUD();
     addDucks();
@@ -97,6 +108,17 @@ function togglePause() {
     if (!gameActive) return;
     isPaused = !isPaused;
     document.getElementById("pause-btn").innerText = isPaused ? "Reprendre" : "Pause";
+}
+
+// ---------- Passage au niveau 2 ----------
+function checkLevelUp() {
+    if (level === 1 && score >= LEVEL_2_SCORE) {
+        level = 2;
+        speedFactor = LEVEL_2_SPEED;
+        document.body.classList.add("level-2");
+        updateHUD();
+        showTemporaryMessage("Niveau 2 !", 2000);
+    }
 }
 
 // ---------- Génère des canards ----------
@@ -126,6 +148,7 @@ function addDucks() {
                 highScore = score;
                 saveHighScore();
             }
+            checkLevelUp();
             updateHUD();
 
             this.remove();
@@ -135,12 +158,13 @@ function addDucks() {
 
         document.body.appendChild(duckImage);
 
+        let goesLeft = duckImageName === duckImageNames[0];
         let duck = {
             image: duckImage,
             x: parseInt(duckImage.style.left),
             y: parseInt(duckImage.style.top),
-            velocityX: duckImageName === duckImageNames[0] ? -duckVelocityX : duckVelocityX,
-            velocityY: duckVelocityY
+            velocityX: (goesLeft ? -1 : 1) * duckVelocityX * speedFactor,
+            velocityY: duckVelocityY * speedFactor
         };
         ducks.push(duck);
     }
@@ -207,10 +231,11 @@ function randomPosition(limit) {
 function updateHUD() {
     document.getElementById("score").innerText = `Score : ${score}`;
     document.getElementById("highscore").innerText = `Meilleur score : ${highScore}`;
+    document.getElementById("level").innerText = `Niveau : ${level}`;
     document.getElementById("timer").innerText = `Temps : ${timer}s`;
 }
 
-// ---------- Message de fin ----------
+// ---------- Messages à l'écran ----------
 function showMessage(text) {
     let message = document.getElementById("message");
     message.innerText = text;
@@ -221,12 +246,19 @@ function hideMessage() {
     document.getElementById("message").style.display = "none";
 }
 
+function showTemporaryMessage(text, duration) {
+    showMessage(text);
+    clearTimeout(messageTimeout);
+    messageTimeout = setTimeout(hideMessage, duration);
+}
+
 // ---------- Fin du jeu ----------
 function endGame() {
     gameActive = false;
     clearInterval(gameInterval);
     clearInterval(timerInterval);
     clearTimeout(dogTimeout);
+    clearTimeout(messageTimeout);
 
     // Nettoie l'écran : canards et chien
     ducks.forEach(d => d.image.remove());
@@ -241,5 +273,5 @@ function endGame() {
     updateHUD();
     document.getElementById("pause-btn").innerText = "Pause";
     document.getElementById("play-btn").style.display = "block";
-    showMessage(`Temps écoulé ! Score final : ${score}`);
+    showMessage(`Temps écoulé ! Score final : ${score} (niveau ${level})`);
 }

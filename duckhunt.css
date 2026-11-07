@@ -10,19 +10,34 @@ html, body {
 }
 
 body {
-    background: url("duckhunt-bg-4k.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #4aaff8;
     cursor: url("target.png"), auto;
     overflow: hidden;
     font-family: gameFont, sans-serif;
 }
 
+/* Décor : une couche séparée, pour pouvoir changer son apparence par niveau */
+#scenery {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: url("duckhunt-bg-4k.png") center / cover no-repeat;
+    transition: filter 1.5s ease;
+}
+
+/* Niveau 2 : décor de nuit.
+   Pour d'autres ambiances, remplace la ligne filter par :
+   - coucher de soleil : hue-rotate(150deg) saturate(1.2)
+   - décor sombre      : brightness(0.5)
+   - décor rosé        : hue-rotate(-60deg) saturate(1.3) */
+body.level-2 #scenery {
+    filter: brightness(0.55) saturate(1.2) hue-rotate(25deg);
+}
+
 #hud {
     position: fixed;
     top: 20px;
-    left: 300px;
+    left: 280px;
     height: 40px;
     z-index: 10;
     color: white;
@@ -93,7 +108,8 @@ img {
     user-select: none;
 }
 
-@media (max-width: 900px) {
+/* Petits écrans : l'affichage passe sous les boutons */
+@media (max-width: 1100px) {
     #hud {
         top: 75px;
         left: 20px;
