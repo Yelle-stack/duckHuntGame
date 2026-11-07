@@ -21,14 +21,21 @@ body {
 
 #hud {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 300px;
+    height: 40px;
     z-index: 10;
     color: white;
     font-family: gameFont, sans-serif;
     font-size: 24px;
     display: flex;
+    align-items: center;
     gap: 30px;
+}
+
+#hud p {
+    margin: 0;
+    white-space: nowrap;
 }
 
 #play-btn, #pause-btn {
@@ -84,4 +91,15 @@ body {
 
 img {
     user-select: none;
+}
+
+@media (max-width: 900px) {
+    #hud {
+        top: 75px;
+        left: 20px;
+        height: auto;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+        font-size: 16px;
+    }
 }
