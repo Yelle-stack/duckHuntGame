@@ -1,4 +1,4 @@
-# 🦆 Duck Hunt Deluxe
+# 🦆 Duck Hunt 
 
 A fast-paced browser shooting game built with vanilla HTML, CSS and JavaScript. Shoot the flying ducks before the timer runs out, climb to level 2 and try to beat your high score.
 
