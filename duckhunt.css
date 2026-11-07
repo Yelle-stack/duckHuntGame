@@ -14,7 +14,6 @@ body {
     cursor: url("target.png"), auto;
     overflow: hidden;
     font-family: gameFont, sans-serif;
-    touch-action: manipulation;
 }
 
 /* Décor : une couche séparée, pour pouvoir changer son apparence par niveau */
@@ -35,25 +34,64 @@ body.level-2 #scenery {
     filter: brightness(0.55) saturate(1.2) hue-rotate(25deg);
 }
 
+/* ---------- Barre d'information en bas ---------- */
+/* Hauteur de 64px : doit rester égale à BAR_HEIGHT dans duckhunt.js */
 #hud {
     position: fixed;
-    top: 20px;
-    left: 280px;
-    height: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 64px;
+    box-sizing: border-box;
     z-index: 10;
-    color: white;
-    font-family: gameFont, sans-serif;
-    font-size: 24px;
     display: flex;
     align-items: center;
-    gap: 30px;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 14px;
+    background-color: #000;
+    color: white;
+    font-family: gameFont, sans-serif;
 }
 
-#hud p {
-    margin: 0;
+.panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    padding: 0 14px;
+    box-sizing: border-box;
+    background-color: #050505;
+    border: 3px solid #7ee04a;
+    border-radius: 6px;
+    font-size: 20px;
     white-space: nowrap;
 }
 
+.label {
+    color: #7ee04a;
+    font-size: 14px;
+}
+
+/* Jauge de progression : se remplit jusqu'à l'objectif du niveau */
+#hit-bar {
+    display: flex;
+    gap: 4px;
+}
+
+.hit-box {
+    width: 12px;
+    height: 16px;
+    border-radius: 6px 6px 3px 3px;
+    background-color: #444;
+    transition: background-color 0.2s;
+}
+
+.hit-box.filled {
+    background-color: #ff2a2a;
+}
+
+/* ---------- Boutons ---------- */
 #play-btn, #pause-btn {
     position: fixed;
     top: 20px;
@@ -89,6 +127,7 @@ body.level-2 #scenery {
     transform: scale(1.1);
 }
 
+/* ---------- Message au centre ---------- */
 #message {
     display: none;
     position: fixed;
@@ -107,22 +146,33 @@ body.level-2 #scenery {
 
 img {
     user-select: none;
-    -webkit-touch-callout: none;
 }
 
-/* Petits écrans : l'affichage passe sous les boutons */
-@media (max-width: 1100px) {
-    #hud {
-        top: 75px;
-        left: 20px;
-        height: auto;
-        flex-wrap: wrap;
-        gap: 10px 20px;
-        font-size: 16px;
+/* ---------- Écrans moyens : on retire la jauge et le record ---------- */
+@media (max-width: 900px) {
+    #hit-panel,
+    #best-panel {
+        display: none;
     }
 }
 
+/* ---------- Petits écrans (téléphones) ---------- */
 @media (max-width: 600px) {
+    #hud {
+        gap: 8px;
+        padding: 0 8px;
+    }
+
+    .panel {
+        gap: 6px;
+        padding: 0 8px;
+        font-size: 14px;
+    }
+
+    .label {
+        font-size: 10px;
+    }
+
     #play-btn, #pause-btn {
         top: 10px;
         padding: 6px 12px;
@@ -135,13 +185,6 @@ img {
 
     #pause-btn {
         left: 110px;
-    }
-
-    #hud {
-        top: 55px;
-        left: 10px;
-        gap: 6px 12px;
-        font-size: 12px;
     }
 
     #message {

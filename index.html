@@ -11,17 +11,48 @@
 <body>
     <div id="scenery"></div>
 
-    <div id="hud">
-        <p id="score">Score : 0</p>
-        <p id="highscore">Meilleur score : 0</p>
-        <p id="level">Niveau : 1</p>
-        <p id="timer">Temps : 200s</p>
-    </div>
-
     <button id="play-btn">Jouer</button>
     <button id="pause-btn">Pause</button>
 
     <div id="message"></div>
+
+    <!-- Barre d'information en bas de l'écran -->
+    <div id="hud">
+        <div class="panel" id="level-panel">
+            <span id="level">NIV 1</span>
+        </div>
+
+        <div class="panel" id="hit-panel">
+            <span class="label">TOUCHÉS</span>
+            <div id="hit-bar">
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+                <span class="hit-box"></span>
+            </div>
+        </div>
+
+        <div class="panel" id="time-panel">
+            <span class="label">TEMPS</span>
+            <span id="timer">200s</span>
+        </div>
+
+        <div class="panel" id="best-panel">
+            <span class="label">RECORD</span>
+            <span id="highscore">000000</span>
+        </div>
+
+        <div class="panel" id="score-panel">
+            <span class="label">SCORE</span>
+            <span id="score">000000</span>
+        </div>
+    </div>
 
     <script src="duckhunt.js"></script>
 </body>

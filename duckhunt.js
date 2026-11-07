@@ -3,6 +3,9 @@ const LEVEL_2_SCORE = 10;   // score à atteindre pour passer au niveau 2
 const LEVEL_2_SPEED = 1.5;  // les canards vont 1,5 fois plus vite au niveau 2
 const LEVEL_2_TARGET = 30;  // score à atteindre pour gagner la partie
 
+// Hauteur de la barre d'information en bas (doit être égale à celle du CSS)
+const BAR_HEIGHT = 64;
+
 // ---------- Canards ----------
 let ducks = [];
 let duckCount = 1;
@@ -209,7 +212,7 @@ function addDog(count) {
     dogImage.height = 152;
     dogImage.draggable = false;
     dogImage.style.position = "fixed";
-    dogImage.style.bottom = "0px";
+    dogImage.style.bottom = `${BAR_HEIGHT}px`;
     dogImage.style.left = "50%";
     dogImage.style.transform = "translateX(-50%)";
     document.body.appendChild(dogImage);
@@ -232,10 +235,17 @@ function randomPosition(limit) {
 
 // ---------- Met à jour l'affichage (HUD) ----------
 function updateHUD() {
-    document.getElementById("score").innerText = `Score : ${score}`;
-    document.getElementById("highscore").innerText = `Meilleur score : ${highScore}`;
-    document.getElementById("level").innerText = `Niveau : ${level}`;
-    document.getElementById("timer").innerText = `Temps : ${timer}s`;
+    document.getElementById("score").innerText = String(score).padStart(6, "0");
+    document.getElementById("highscore").innerText = String(highScore).padStart(6, "0");
+    document.getElementById("level").innerText = `NIV ${level}`;
+    document.getElementById("timer").innerText = `${timer}s`;
+
+    // Jauge : progression vers l'objectif du niveau en cours (10 cases)
+    let target = level === 1 ? LEVEL_2_SCORE : LEVEL_2_TARGET;
+    let filled = Math.min(10, Math.floor(score / target * 10));
+    document.querySelectorAll(".hit-box").forEach((box, i) => {
+        box.classList.toggle("filled", i < filled);
+    });
 }
 
 // ---------- Messages à l'écran ----------
